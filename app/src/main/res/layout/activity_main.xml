@@ -4,32 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_Color"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/g_nl_k"
-                android:textSize="24sp"
-                android:layout_gravity="center"
-                android:textColor="@color/colorPrimary"
-                android:id="@+id/toolbar_title" />
-
-        </androidx.appcompat.widget.Toolbar>
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
+            android:background="?attr/background_Color"
             android:layout_width="match_parent"
+            app:tabTextColor="@color/word"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabIconTint="@color/your_color_selector"
             android:layout_height="wrap_content">
 
             <com.google.android.material.tabs.TabItem

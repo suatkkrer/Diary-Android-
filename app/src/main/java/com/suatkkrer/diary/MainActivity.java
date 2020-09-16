@@ -28,9 +28,21 @@ public class MainActivity extends AppCompatActivity {
     private fragment_search fragment_search;
     private fragment_settings fragment_settings;
 
+    SaveData saveData;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+        saveData = new SaveData(this);
+
+        if (saveData.loadDarkModeState()){
+            setTheme(R.style.darkTheme);
+        } else setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -38,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        this.setTitle("");
+//        toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        this.setTitle("");
 
 
         viewPager = findViewById(R.id.viewPager);
