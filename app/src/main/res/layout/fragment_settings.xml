@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/Text_Color"
                 android:text="Şifre Değiştir"/>
 
         </LinearLayout>
@@ -64,7 +64,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/darkmode"/>
+            android:src="@drawable/darkmode"
+             />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/Text_Color"
                 android:text="Karanlık Mod"/>
 
         </LinearLayout>
@@ -103,7 +104,7 @@
                 android:layout_height="1dp"
                 android:background="@color/content"/>
 
-    <LinearLayout
+  <!--  <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,7 +114,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:tint="@color/colorPrimary"
             android:layout_marginStart="10dp"
             android:src="@drawable/fontstyle"/>
         <LinearLayout
@@ -128,18 +128,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/Text_Color"
                 android:text="Yazı Tipi Değiştir"/>
 
         </LinearLayout>
     </LinearLayout>
-
-            <View
+-->
+<!--            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/content"/>
+                android:background="@color/content"/>-->
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -149,7 +149,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:tint="@color/colorPrimary"
             android:layout_marginStart="10dp"
             android:src="@drawable/fontsize"/>
         <LinearLayout
@@ -164,16 +163,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/Text_Color"
                 android:text="Yazı Boyutu Değiştir"/>
 
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 
-            <View
+    <!--        <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/content"/>
+                android:background="@color/content"/>-->
 
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -185,7 +184,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:tint="@color/colorPrimary"
             android:layout_marginStart="10dp"
             android:src="@drawable/reminder"/>
         <LinearLayout
@@ -200,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/Text_Color"
                 android:text="Hatırlatıcı"/>
 
         </LinearLayout>
@@ -221,7 +219,6 @@
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:tint="@color/colorPrimary"
         android:layout_marginStart="10dp"
         android:src="@drawable/pdf"/>
     <LinearLayout
@@ -236,7 +233,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="?attr/Text_Color"
             android:text="Pdf Dosyasına Dönüştür"/>
 
     </LinearLayout>
@@ -257,7 +254,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:tint="@color/colorPrimary"
             android:layout_marginStart="10dp"
             android:src="@drawable/delete"/>
         <LinearLayout
@@ -272,7 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/Text_Color"
                 android:text="Programdaki Bütün Verileri Sil"/>
 
         </LinearLayout>
@@ -293,7 +289,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:tint="@color/colorPrimary"
             android:layout_marginStart="10dp"
             android:src="@drawable/star"/>
         <LinearLayout
@@ -308,7 +303,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="?attr/Text_Color"
                 android:text="Uygulamaya Puan Ver"/>
 
                 </LinearLayout>

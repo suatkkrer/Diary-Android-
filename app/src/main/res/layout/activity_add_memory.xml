@@ -1,9 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background_Color"
+    android:orientation="vertical"
     tools:context=".AddMemory">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorEx"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="?background_Color"
+            android:fontFamily="@font/aclonica"
+            android:text="Çarşamba"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?background_Color"
+            android:layout_marginBottom="70dp"
+            android:layout_marginStart="50dp"
+            android:fontFamily="@font/aclonica"
+            android:text="19.11.1997"
+            android:textSize="28sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="400dp"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/radius2"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/titleAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
+            android:textAlignment="textStart"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/aclonica"
+            android:layout_marginEnd="15dp"
+            android:hint="Başlık..."
+            android:textSize="18sp"
+            android:background="@drawable/radius3"
+            tools:ignore="RtlCompat" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="300dp"
+            android:background="@drawable/radius3"
+            android:layout_below="@id/titleAdd"
+            android:paddingTop="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="40dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textAlignment="textStart"
+            android:gravity="start"
+            android:hint="Yazmaya Başlayın..."
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"/>
+
+    </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_marginTop="-40dp"
+                android:padding="10dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/radius">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/calender"
+                    />
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:background="?attr/background_Color" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/cancel"
+                    />
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:background="?background_Color" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/del"
+                    />
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:background="?attr/background_Color" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/save"
+                    />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

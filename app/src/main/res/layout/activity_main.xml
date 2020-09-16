@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,9 +15,10 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:background="?attr/background_Color"
+            app:tabIndicatorColor="?attr/car_background"
             android:layout_width="match_parent"
-            app:tabTextColor="@color/word"
-            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="?attr/Button_Color"
+            app:tabSelectedTextColor="?attr/car_background"
             app:tabIconTint="@color/your_color_selector"
             android:layout_height="wrap_content">
 

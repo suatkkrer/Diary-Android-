@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#258bd6</color>
+    <color name="colorPrimary">#7A5D8C</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
@@ -8,14 +8,15 @@
     <color name="card">#f6f6f6</color>
     <color name="title">#258bd6</color>
     <color name="content">#999da4</color>
+    <color name="content1">#606265</color>
 
-    <color name="blue">#CFE2F3</color>
+    <color name="blue">#CEE1F1</color>
 
-    <color name="word">#92A1AD</color>
+    <color name="word">#eeeeee</color>
 
     <color name="writing">#9F241B</color>
 
-    <color name="dark_color">#0e0e0e</color>
+    <color name="dark_color">#375165</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 </resources>

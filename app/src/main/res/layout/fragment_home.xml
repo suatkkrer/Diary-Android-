@@ -25,7 +25,7 @@
         android:id="@+id/fb_button"
         android:layout_gravity="end|bottom"
         android:layout_margin="25dp"
-        android:backgroundTint="#bacbda"
+        android:backgroundTint="?attr/FloatingButton"
         app:fabSize="normal"
         android:elevation="6dp"
         android:src="@drawable/ffff"

@@ -40,7 +40,7 @@ public class fragment_home extends Fragment {
         floatingActionButton = v.findViewById(R.id.fb_button);
         mData = new ArrayList<>();
 
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.ffff));
+        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
         mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
         mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile adam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bile",R.drawable.fff));
         mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
