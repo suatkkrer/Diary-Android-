@@ -24,23 +24,25 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:textColor="?background_Color"
             android:fontFamily="@font/aclonica"
             android:text="Çarşamba"
+            android:textColor="?background_Color"
             android:textSize="30sp" />
 
         <TextView
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?background_Color"
-            android:layout_marginBottom="70dp"
             android:layout_marginStart="50dp"
+            android:layout_marginBottom="70dp"
             android:fontFamily="@font/aclonica"
             android:text="19.11.1997"
+            android:textColor="?background_Color"
             android:textSize="28sp" />
 
     </LinearLayout>
@@ -74,6 +76,7 @@
             tools:ignore="RtlCompat" />
 
         <EditText
+            android:id="@+id/memoryAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="300dp"
@@ -122,6 +125,7 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:onClick="Cancel"
                     android:src="@drawable/cancel"
                     />
 
@@ -133,6 +137,7 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:onClick="Delete"
                     android:src="@drawable/del"
                     />
 
@@ -144,6 +149,7 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:onClick="saveButton"
                     android:src="@drawable/save"
                     />
 

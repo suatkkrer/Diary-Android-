@@ -18,11 +18,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     Context mContext;
     List<MemoryItems> mData;
+    private OnNoteListener mOnNoteListener;
 
 
-    public Adapter(Context mContext, List<MemoryItems> mData) {
+    public Adapter(Context mContext, List<MemoryItems> mData,OnNoteListener onNoteListener) {
         this.mContext = mContext;
         this.mData = mData;
+        this.mOnNoteListener = onNoteListener;
     }
 
     @NonNull
@@ -31,7 +33,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
         View layout;
         layout = LayoutInflater.from(mContext).inflate(R.layout.items,parent,false);
-        return new AdapterViewHolder(layout);
+        return new AdapterViewHolder(layout,mOnNoteListener);
     }
 
     @Override
@@ -55,19 +57,33 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
         return mData.size();
     }
 
-    public class AdapterViewHolder extends RecyclerView.ViewHolder{
+    public class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView memoryText,titleText,dateText;
         ImageView iconView;
         RelativeLayout relativeLayout;
+        OnNoteListener onNoteListener;
 
-        public AdapterViewHolder(@NonNull View itemView) {
+        public AdapterViewHolder(@NonNull View itemView,  OnNoteListener onNoteListener) {
             super(itemView);
             memoryText = itemView.findViewById(R.id.memoryText);
             titleText = itemView.findViewById(R.id.titleText);
             dateText = itemView.findViewById(R.id.dateText);
             iconView = itemView.findViewById(R.id.iconView);
             relativeLayout = itemView.findViewById(R.id.relativeLayout);
+            this.onNoteListener = onNoteListener;
+
+            itemView.setOnClickListener(this);
+
         }
+
+        @Override
+        public void onClick(View v) {
+            onNoteListener.onNoteClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnNoteListener{
+        void onNoteClick(int position);
     }
 }

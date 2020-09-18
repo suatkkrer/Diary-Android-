@@ -2,6 +2,8 @@ package com.suatkkrer.diary;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +21,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fragment_home extends Fragment {
+import static android.content.Context.MODE_PRIVATE;
+
+public class fragment_home extends Fragment implements Adapter.OnNoteListener {
 
     View v;
     Context thisContext;
@@ -38,45 +42,35 @@ public class fragment_home extends Fragment {
         coordinatorLayout = v.findViewById(R.id.fragmentHomeLayout);
         recyclerView = v.findViewById(R.id.memoryRecycler);
         floatingActionButton = v.findViewById(R.id.fb_button);
-        mData = new ArrayList<>();
 
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile adam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bileadam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
-        mData.add(new MemoryItems("12/28/3131","Programming","adam olana cok bile",R.drawable.fff));
 
-        adapter = new Adapter(thisContext,mData);
+
+        try {
+            SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories",MODE_PRIVATE,null);
+
+            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+
+
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM memories",null);
+
+            int titleIx = cursor.getColumnIndex("title");
+            int memoryIx = cursor.getColumnIndex("memory");
+            int idIx = cursor.getColumnIndex("id");
+
+            while (cursor.moveToNext()){
+                mData.add(new MemoryItems("12/28/3131",cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
+            }
+            cursor.close();
+
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+        adapter = new Adapter(thisContext,mData,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -94,5 +88,16 @@ public class fragment_home extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mData = new ArrayList<>();
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        Intent intent = new Intent(getContext(),AddMemory.class);
+        intent.putExtra("title",mData.get(position).getTitle());
+        intent.putExtra("memory",mData.get(position).getContent());
+        intent.putExtra("id",mData.get(position).getId());
+        startActivity(intent);
     }
 }
