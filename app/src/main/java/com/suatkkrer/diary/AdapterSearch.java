@@ -14,9 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> implements Filterable {
+public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterViewHolder> implements Filterable {
 
     Context mContext;
     List<MemoryItems> mData;
@@ -24,7 +25,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> imp
     private OnNoteListener mOnNoteListener;
 
 
-    public Adapter(Context mContext, List<MemoryItems> mData,OnNoteListener onNoteListener) {
+    public AdapterSearch(Context mContext, List<MemoryItems> mData, OnNoteListener onNoteListener) {
         this.mContext = mContext;
         this.mData = mData;
         this.mOnNoteListener = onNoteListener;
@@ -47,23 +48,53 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> imp
 
         holder.relativeLayout.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale));
 
-
-
-        holder.memoryText.setText(mData.get(position).getContent());
-        holder.titleText.setText(mData.get(position).getTitle());
-        holder.dateText.setText(mData.get(position).getDate());
-        holder.iconView.setImageResource(mData.get(position).getIcon());
+        holder.memoryText.setText(mDataFiltered.get(position).getContent());
+        holder.titleText.setText(mDataFiltered.get(position).getTitle());
+        holder.dateText.setText(mDataFiltered.get(position).getDate());
+        holder.iconView.setImageResource(mDataFiltered.get(position).getIcon());
 
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mDataFiltered.size();
     }
 
     @Override
     public Filter getFilter() {
-        return null;
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String Key = constraint.toString();
+                if (Key.isEmpty()){
+                    mDataFiltered = mData;
+                } else
+                {
+                    List<MemoryItems> lstFiltered = new ArrayList<>();
+                    for (MemoryItems row : mData){
+                        if (row.getTitle().toLowerCase().contains(Key.toLowerCase()) || row.getContent().toLowerCase().contains(Key.toLowerCase())){
+                            lstFiltered.add(row);
+                        }
+                    }
+                    mDataFiltered = lstFiltered;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mDataFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                mDataFiltered = (List<MemoryItems>) results.values;
+                notifyDataSetChanged();
+
+            }
+        };
+
+
+
     }
 
     public class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

@@ -23,6 +23,7 @@ public class fragment_settings extends Fragment {
     Context thisContext;
     SaveData saveData;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
