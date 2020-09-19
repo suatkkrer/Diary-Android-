@@ -1,7 +1,10 @@
 package com.suatkkrer.diary;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +20,14 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class fragment_settings extends Fragment {
 
     View v;
     Context thisContext;
     SaveData saveData;
+    LinearLayout deleteLayout;
 
 
     @Nullable
@@ -49,6 +55,45 @@ public class fragment_settings extends Fragment {
                 }
             }
         });
+
+        deleteLayout = v.findViewById(R.id.deleteAllItems);
+
+        deleteLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder aler = new AlertDialog.Builder(getContext());
+                aler.setTitle("Emin misiniz?");
+                aler.setMessage("Bütün verileriniz silinecek emin misiniz?");
+                aler.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
+
+                            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+
+
+                            sqLiteDatabase.execSQL("DELETE FROM memories");
+                            Toast.makeText(getActivity(), "Verileriniz başarıyla silindi.", Toast.LENGTH_SHORT).show();
+                            restartApplication();
+
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                aler.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity(), "Silme işlemi iptal edildi.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                aler.create().show();
+            }
+        });
+
+
 
 
         return v;

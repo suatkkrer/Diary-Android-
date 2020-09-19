@@ -27,7 +27,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/lock"
+            android:src="@drawable/locklast"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,6 +63,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:src="@drawable/darkmode"
              />
@@ -249,13 +250,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
+        android:id="@+id/deleteAllItems"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/delete"/>
+            android:src="@drawable/deletelast"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -290,7 +292,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/star"/>
+            android:src="@drawable/stars"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

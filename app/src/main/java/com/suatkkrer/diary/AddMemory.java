@@ -1,7 +1,10 @@
 package com.suatkkrer.diary;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,20 +12,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.text.format.DateFormat;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import static android.text.format.DateFormat.format;
 
 
-public class AddMemory extends AppCompatActivity {
+public class AddMemory extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     SaveData saveData;
     EditText memoryAdd,titleAdd;
-    String titleHome;
+    String titleHome,dateHome;
     String memoryHome;
     int idHome;
-    TextView day,date1;
+    TextView day;
 
 
     @Override
@@ -40,22 +49,27 @@ public class AddMemory extends AppCompatActivity {
 
         memoryAdd = findViewById(R.id.memoryAdd);
         titleAdd = findViewById(R.id.titleAdd);
-        date1 = findViewById(R.id.date);
         day = findViewById(R.id.day);
 
-//        long date = 0;
-//        String dayOfTheWeek = (String) DateFormat.format("EEEE",date);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-   //     date1.setText();
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE,\n dd MMM yyyy");
+        String date = dateFormat.format(cal.getTime());
+        day.setText(date);
+
+
 
         Intent intent = getIntent();
         titleHome = intent.getStringExtra("title");
         memoryHome = intent.getStringExtra("memory");
         idHome = intent.getIntExtra("id",-1);
+        dateHome = intent.getStringExtra("date");
 
         if (titleHome != null && memoryHome != null){
             memoryAdd.setText(memoryHome);
             titleAdd.setText(titleHome);
+            day.setText(dateHome);
         }
 
 
@@ -67,24 +81,26 @@ public class AddMemory extends AppCompatActivity {
             if (idHome == -1) {
                 SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
 
-                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR, date VARCHAR)");
 
                 String title1 = String.valueOf(titleAdd.getText());
                 String memory1 = String.valueOf(memoryAdd.getText());
+                String day11 = String.valueOf(day.getText());
 
-                sqLiteDatabase.execSQL("INSERT INTO memories (title,memory) VALUES ('" + title1 + "','" + memory1 + "')");
+                sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             } else {
                 SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
 
-                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR, date VARCHAR)");
 
                 String title1 = String.valueOf(titleAdd.getText());
                 String memory1 = String.valueOf(memoryAdd.getText());
+                String day11 = String.valueOf(day.getText());
 
-                sqLiteDatabase.execSQL("INSERT INTO memories (title,memory) VALUES ('" + title1 + "','" + memory1 + "')");
+                sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
                 sqLiteDatabase.execSQL("DELETE FROM memories WHERE id = " + idHome + "");
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -105,16 +121,61 @@ public class AddMemory extends AppCompatActivity {
     public void Delete(View view) {
 
         if (idHome != -1) {
-            SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
+            try {
+                SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
 
-            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR,date VARCHAR)");
 
 
-            sqLiteDatabase.execSQL("DELETE FROM memories WHERE id = " + idHome + "");
+                sqLiteDatabase.execSQL("DELETE FROM memories WHERE id = " + idHome + "");
 
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
+    }
+
+    public void hide1(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+    }
+
+    public void hide2(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+    }
+
+    public void calendar(View view) {
+        DialogFragment datePicker = new DatePickerFragment();
+        datePicker.show(getSupportFragmentManager(),"Date Picker");
+    }
+    private void showDatePickerDialog(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+            datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+           Calendar c = Calendar.getInstance();
+           c.set(Calendar.YEAR, year);
+           c.set(Calendar.MONTH, month);
+           c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+//           String date = DateFormat.getDateFormat(this).format(c.getTime());
+//           date1.setText(date);
+
+        CharSequence dateChar = DateFormat.format("EEEE,\n dd MMM yyyy",c);
+        day.setText(dateChar);
+
 
     }
 }

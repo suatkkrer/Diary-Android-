@@ -14,12 +14,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:onClick="hide2"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="hide1"
         android:background="?attr/colorEx"
         android:orientation="vertical">
 
@@ -30,20 +32,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/aclonica"
-            android:text="Çarşamba"
+            android:text="Çarşamba, \n 19/11/1997"
             android:textColor="?background_Color"
+            android:layout_marginBottom="80dp"
             android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginBottom="70dp"
-            android:fontFamily="@font/aclonica"
-            android:text="19.11.1997"
-            android:textColor="?background_Color"
-            android:textSize="28sp" />
 
     </LinearLayout>
 
@@ -114,6 +107,7 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:onClick="calendar"
                     android:src="@drawable/calender"
                     />
 

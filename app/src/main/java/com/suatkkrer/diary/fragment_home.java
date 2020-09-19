@@ -48,7 +48,7 @@ public class fragment_home extends Fragment implements Adapter.OnNoteListener {
         try {
             SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories",MODE_PRIVATE,null);
 
-            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR,date VARCHAR)");
 
 
             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM memories",null);
@@ -56,9 +56,10 @@ public class fragment_home extends Fragment implements Adapter.OnNoteListener {
             int titleIx = cursor.getColumnIndex("title");
             int memoryIx = cursor.getColumnIndex("memory");
             int idIx = cursor.getColumnIndex("id");
+            int dateIx = cursor.getColumnIndex("date");
 
             while (cursor.moveToNext()){
-                mData.add(new MemoryItems("12/28/3131",cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
+                mData.add(new MemoryItems(cursor.getString(dateIx),cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
             }
             cursor.close();
 
@@ -98,6 +99,7 @@ public class fragment_home extends Fragment implements Adapter.OnNoteListener {
         intent.putExtra("title",mData.get(position).getTitle());
         intent.putExtra("memory",mData.get(position).getContent());
         intent.putExtra("id",mData.get(position).getId());
+        intent.putExtra("date",mData.get(position).getDate());
         startActivity(intent);
     }
 }
