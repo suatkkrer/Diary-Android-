@@ -78,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onBackPressed(){
+        finishAffinity();
+    }
+
     private class ViewPagerAdapter extends FragmentPagerAdapter {
 
         private List<Fragment> fragments = new ArrayList<>();

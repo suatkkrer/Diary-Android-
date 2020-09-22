@@ -74,7 +74,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
                 {
                     List<MemoryItems> lstFiltered = new ArrayList<>();
                     for (MemoryItems row : mData){
-                        if (row.getTitle().toLowerCase().contains(Key.toLowerCase()) || row.getContent().toLowerCase().contains(Key.toLowerCase())){
+                        if (row.getTitle().toLowerCase().contains(Key.toLowerCase()) || row.getContent().toLowerCase().contains(Key.toLowerCase()) || row.getDate().toLowerCase().contains(Key.toLowerCase())){
                             lstFiltered.add(row);
                         }
                     }

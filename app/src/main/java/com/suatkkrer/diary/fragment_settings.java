@@ -27,7 +27,7 @@ public class fragment_settings extends Fragment {
     View v;
     Context thisContext;
     SaveData saveData;
-    LinearLayout deleteLayout;
+    LinearLayout deleteLayout,changePassword;
 
 
     @Nullable
@@ -57,6 +57,15 @@ public class fragment_settings extends Fragment {
         });
 
         deleteLayout = v.findViewById(R.id.deleteAllItems);
+        changePassword = v.findViewById(R.id.changePassword);
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),PasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         deleteLayout.setOnClickListener(new View.OnClickListener() {
             @Override

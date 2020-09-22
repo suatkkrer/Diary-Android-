@@ -11,6 +11,15 @@
     <color name="content1">#606265</color>
 
     <color name="blue">#CEE1F1</color>
+    <color name="darkblue">#535288</color>
+    <color name="transparentWhite">#30000000</color>
+
+    <color name="clr_otp_bg">#535288</color>
+    <color name="clr_otp_btn_yellow">#F8CD06</color>
+    <color name="clr_white_text">#FFFFFF</color>
+    <color name="clr_grey_text">#D3D3D3</color>
+    <color name="clr_grey_text_transparent">#80D3D3D3</color>
+    <color name="feather">#80DF8D8D</color>
 
     <color name="word">#eeeeee</color>
 

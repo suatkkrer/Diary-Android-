@@ -43,33 +43,30 @@ public class fragment_home extends Fragment implements Adapter.OnNoteListener {
         recyclerView = v.findViewById(R.id.memoryRecycler);
         floatingActionButton = v.findViewById(R.id.fb_button);
 
+        if (mData.size() == 0) {
+            try {
+                SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
+
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR,date VARCHAR)");
 
 
-        try {
-            SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories",MODE_PRIVATE,null);
+                Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM memories", null);
 
-            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR,date VARCHAR)");
+                int titleIx = cursor.getColumnIndex("title");
+                int memoryIx = cursor.getColumnIndex("memory");
+                int idIx = cursor.getColumnIndex("id");
+                int dateIx = cursor.getColumnIndex("date");
 
+                while (cursor.moveToNext()) {
+                    mData.add(new MemoryItems(cursor.getString(dateIx), cursor.getString(titleIx), cursor.getString(memoryIx), R.drawable.fff, cursor.getInt(idIx)));
+                }
 
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM memories",null);
+                cursor.close();
 
-            int titleIx = cursor.getColumnIndex("title");
-            int memoryIx = cursor.getColumnIndex("memory");
-            int idIx = cursor.getColumnIndex("id");
-            int dateIx = cursor.getColumnIndex("date");
-
-            while (cursor.moveToNext()){
-                mData.add(new MemoryItems(cursor.getString(dateIx),cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            cursor.close();
-
-
-
-        } catch (Exception e){
-            e.printStackTrace();
         }
-
-
 
         adapter = new Adapter(thisContext,mData,this);
         recyclerView.setAdapter(adapter);

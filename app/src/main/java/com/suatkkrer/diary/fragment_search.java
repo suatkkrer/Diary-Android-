@@ -1,5 +1,6 @@
 package com.suatkkrer.diary;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,7 +11,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +35,7 @@ public class fragment_search extends Fragment implements AdapterSearch.OnNoteLis
     AdapterSearch adapter;
     List<MemoryItems> mData;
     List<MemoryItems> mData2;
+    LinearLayout linearLayout;
 
     @Nullable
     @Override
@@ -41,22 +45,24 @@ public class fragment_search extends Fragment implements AdapterSearch.OnNoteLis
 
         searchEdit = v.findViewById(R.id.searchEditText);
         recyclerView = v.findViewById(R.id.searchRecycler);
+        linearLayout = v.findViewById(R.id.searchLinear);
 
         try {
             SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories",MODE_PRIVATE,null);
 
-            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR, date VARCHAR)");
 
 
             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM memories",null);
 
             int titleIx = cursor.getColumnIndex("title");
             int memoryIx = cursor.getColumnIndex("memory");
+            int dateIx = cursor.getColumnIndex("date");
             int idIx = cursor.getColumnIndex("id");
 
             while (cursor.moveToNext()){
-                mData.add(new MemoryItems("12/28/3131",cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
-                mData2.add(new MemoryItems("12/28/3131",cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
+                mData.add(new MemoryItems(cursor.getString(dateIx),cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
+                mData2.add(new MemoryItems(cursor.getString(dateIx),cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
             }
             cursor.close();
 
@@ -90,8 +96,15 @@ public class fragment_search extends Fragment implements AdapterSearch.OnNoteLis
             }
         });
 
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager) thisContext.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+            }
+        });
 
-
+        
         return v;
     }
 
@@ -101,6 +114,7 @@ public class fragment_search extends Fragment implements AdapterSearch.OnNoteLis
         intent.putExtra("title",mData2.get(position).getTitle());
         intent.putExtra("memory",mData2.get(position).getContent());
         intent.putExtra("id",mData2.get(position).getId());
+        intent.putExtra("date",mData2.get(position).getDate());
         startActivity(intent);
     }
 
