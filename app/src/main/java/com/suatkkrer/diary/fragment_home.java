@@ -47,7 +47,7 @@ public class fragment_home extends Fragment implements Adapter.OnNoteListener {
             try {
                 SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
 
-                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR,date VARCHAR)");
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title TEXT, memory TEXT,date TEXT)");
 
 
                 Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM memories", null);

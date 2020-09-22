@@ -62,7 +62,7 @@ public class fragment_settings extends Fragment {
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),PasswordActivity.class);
+                Intent intent = new Intent(getContext(),PasswordNewFirst.class);
                 startActivity(intent);
             }
         });
@@ -80,7 +80,7 @@ public class fragment_settings extends Fragment {
                         try {
                             SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
 
-                            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR)");
+                            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title TEXT, memory TEXT,date TEXT)");
 
 
                             sqLiteDatabase.execSQL("DELETE FROM memories");

@@ -27,6 +27,20 @@ public class PasswordActivity extends AppCompatActivity {
         passcodeView = findViewById(R.id.passcode_view);
 
 
+        boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .getBoolean("isFirstRun", true);
+
+        if (isFirstRun) {
+            //show start activity
+            startActivity(new Intent(PasswordActivity.this, PasswordNewFirst.class));
+            Toast.makeText(PasswordActivity.this, "First Run", Toast.LENGTH_LONG)
+                    .show();
+        }
+
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                .putBoolean("isFirstRun", false).apply();
+
+
         try {
             SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Password",MODE_PRIVATE,null);
 
@@ -46,20 +60,21 @@ public class PasswordActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        if(passwordConfirm != null) {
+            passcodeView.setPasscodeLength(4)
+                    .setLocalPasscode(passwordConfirm)
+                    .setListener(new PasscodeView.PasscodeViewListener() {
+                        @Override
+                        public void onFail() {
+                            Toast.makeText(PasswordActivity.this, "Şifreniz yanlış", Toast.LENGTH_LONG).show();
+                        }
 
-        passcodeView.setPasscodeLength(4)
-                .setLocalPasscode(passwordConfirm)
-                .setListener(new PasscodeView.PasscodeViewListener() {
-                    @Override
-                    public void onFail() {
-                        Toast.makeText(PasswordActivity.this, "Şifreniz yanlış", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onSuccess(String number) {
-                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                        @Override
+                        public void onSuccess(String number) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+        }
     }
 }

@@ -81,11 +81,11 @@ public class AddMemory extends AppCompatActivity implements DatePickerDialog.OnD
             if (idHome == -1) {
                 SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
 
-                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR, date VARCHAR)");
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title TEXT, memory TEXT, date TEXT)");
 
-                String title1 = String.valueOf(titleAdd.getText());
-                String memory1 = String.valueOf(memoryAdd.getText());
-                String day11 = String.valueOf(day.getText());
+                String title1 = titleAdd.getText().toString();
+                String memory1 = memoryAdd.getText().toString();
+                String day11 = day.getText().toString();
 
                 sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
 
@@ -94,11 +94,11 @@ public class AddMemory extends AppCompatActivity implements DatePickerDialog.OnD
             } else {
                 SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
 
-                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title VARCHAR, memory VARCHAR, date VARCHAR)");
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS memories(id INTEGER PRIMARY KEY,title TEXT, memory TEXT, date TEXT)");
 
-                String title1 = String.valueOf(titleAdd.getText());
-                String memory1 = String.valueOf(memoryAdd.getText());
-                String day11 = String.valueOf(day.getText());
+                String title1 = titleAdd.getText().toString();
+                String memory1 = memoryAdd.getText().toString();
+                String day11 = day.getText().toString();
 
                 sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
                 sqLiteDatabase.execSQL("DELETE FROM memories WHERE id = " + idHome + "");

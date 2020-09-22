@@ -25,6 +25,9 @@ public class PasswordNewFirst extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
+
+
         editText1 = findViewById(R.id.et_1);
         editText2 = findViewById(R.id.et_2);
         editText3 = findViewById(R.id.et_3);
