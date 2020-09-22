@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.view.View;
 import android.text.format.DateFormat;
@@ -87,7 +88,15 @@ public class AddMemory extends AppCompatActivity implements DatePickerDialog.OnD
                 String memory1 = memoryAdd.getText().toString();
                 String day11 = day.getText().toString();
 
-                sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
+                String sql = "INSERT INTO memories (title,memory,date) VALUES (?,?,?)";
+
+                SQLiteStatement statement = sqLiteDatabase.compileStatement(sql);
+                statement.bindString(1,title1);
+                statement.bindString(2,memory1);
+                statement.bindString(3,day11);
+                statement.execute();
+
+                //  sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -100,7 +109,16 @@ public class AddMemory extends AppCompatActivity implements DatePickerDialog.OnD
                 String memory1 = memoryAdd.getText().toString();
                 String day11 = day.getText().toString();
 
-                sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
+                String sql = "INSERT INTO memories (title,memory,date) VALUES (?,?,?)";
+
+                // sqLiteDatabase.execSQL("INSERT INTO memories (title,memory,date) VALUES ('" + title1 + "','" + memory1 + "','" + day11 + "')");
+
+                SQLiteStatement statement = sqLiteDatabase.compileStatement(sql);
+                statement.bindString(1,title1);
+                statement.bindString(2,memory1);
+                statement.bindString(3,day11);
+                statement.execute();
+
                 sqLiteDatabase.execSQL("DELETE FROM memories WHERE id = " + idHome + "");
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
