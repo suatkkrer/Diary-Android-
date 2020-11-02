@@ -2,6 +2,7 @@ package com.suatkkrer.diary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,8 +26,6 @@ public class PasswordNewFirst extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
 
 
         editText1 = findViewById(R.id.et_1);
@@ -106,10 +106,20 @@ public class PasswordNewFirst extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (s.toString().length() == 0){
                     editText3.requestFocus();
+                } else {
+                    closeKeyboard();
                 }
             }
         });
 
+    }
+
+    private void closeKeyboard(){
+        View view = this.getCurrentFocus();
+        if (view != null){
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 
     public void setPassword(View view) {
