@@ -9,6 +9,9 @@
         <attr name="Button_Color" format="color"/>
         <attr name="FloatingButton" format="color"/>
         <attr name="colorEx" format="color"/>
+        <attr name="colorText" format="color"/>
+
+
 
     </declare-styleable>
 
