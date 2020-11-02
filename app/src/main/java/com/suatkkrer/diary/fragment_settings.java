@@ -1,10 +1,12 @@
 package com.suatkkrer.diary;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,7 @@ public class fragment_settings extends Fragment {
     View v;
     Context thisContext;
     SaveData saveData;
-    LinearLayout deleteLayout,changePassword;
+    LinearLayout deleteLayout,changePassword,rate;
 
 
     @Nullable
@@ -58,12 +60,28 @@ public class fragment_settings extends Fragment {
 
         deleteLayout = v.findViewById(R.id.deleteAllItems);
         changePassword = v.findViewById(R.id.changePassword);
+        rate = v.findViewById(R.id.rate);
 
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),PasswordChange.class);
                 startActivity(intent);
+            }
+        });
+
+        //getActivity().getPackageName()
+
+        rate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=" + getActivity().getPackageName())));
+                } catch (ActivityNotFoundException e){
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://play.google.com/store/apps/details?id=" + getActivity().getPackageName())));
+                }
             }
         });
 

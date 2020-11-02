@@ -62,7 +62,6 @@ public class fragment_search extends Fragment implements AdapterSearch.OnNoteLis
 
             while (cursor.moveToNext()){
                 mData.add(new MemoryItems(cursor.getString(dateIx),cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
-                mData2.add(new MemoryItems(cursor.getString(dateIx),cursor.getString(titleIx),cursor.getString(memoryIx),R.drawable.fff,cursor.getInt(idIx)));
             }
             cursor.close();
 
@@ -92,7 +91,6 @@ public class fragment_search extends Fragment implements AdapterSearch.OnNoteLis
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
@@ -110,12 +108,12 @@ public class fragment_search extends Fragment implements AdapterSearch.OnNoteLis
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getContext(),AddMemory.class);
-        intent.putExtra("title",mData2.get(position).getTitle());
-        intent.putExtra("memory",mData2.get(position).getContent());
-        intent.putExtra("id",mData2.get(position).getId());
-        intent.putExtra("date",mData2.get(position).getDate());
-        startActivity(intent);
+//        Intent intent = new Intent(getContext(),AddMemory.class);
+//        intent.putExtra("title",mData2.get(position).getTitle());
+//        intent.putExtra("memory",mData2.get(position).getContent());
+//        intent.putExtra("id",mData2.get(position).getId());
+//        intent.putExtra("date",mData2.get(position).getDate());
+//        startActivity(intent);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
     List<MemoryItems> mData;
     List<MemoryItems> mDataFiltered;
     private OnNoteListener mOnNoteListener;
+    fragment_search fragmentSearch = new fragment_search();
 
 
     public AdapterSearch(Context mContext, List<MemoryItems> mData, OnNoteListener onNoteListener) {
@@ -39,7 +40,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
 
         View layout;
         layout = LayoutInflater.from(mContext).inflate(R.layout.items,parent,false);
-        return new AdapterViewHolder(layout,mOnNoteListener);
+        return new AdapterViewHolder(layout,mContext);
     }
 
     @Override
@@ -49,10 +50,13 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
 
         holder.relativeLayout.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale));
 
-        holder.memoryText.setText(mDataFiltered.get(position).getContent());
-        holder.titleText.setText(mDataFiltered.get(position).getTitle());
-        holder.dateText.setText(mDataFiltered.get(position).getDate());
-        holder.iconView.setImageResource(mDataFiltered.get(position).getIcon());
+//        holder.memoryText.setText(mDataFiltered.get(position).getContent());
+//        holder.titleText.setText(mDataFiltered.get(position).getTitle());
+//        holder.dateText.setText(mDataFiltered.get(position).getDate());
+//        holder.iconView.setImageResource(mDataFiltered.get(position).getIcon());
+
+        MemoryItems item = mDataFiltered.get(position);
+        holder.bind(item);
 
     }
 
@@ -79,6 +83,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
                         }
                     }
                     mDataFiltered = lstFiltered;
+                    fragmentSearch.mData2 = lstFiltered;
                 }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = mDataFiltered;
@@ -104,23 +109,39 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
         ImageView iconView;
         RelativeLayout relativeLayout;
         OnNoteListener onNoteListener;
+        private MemoryItems currentItem;
+        Context context;
 
-        public AdapterViewHolder(@NonNull View itemView,  OnNoteListener onNoteListener) {
+        public AdapterViewHolder(@NonNull View itemView, Context context) {
             super(itemView);
+            this.context = context;
             memoryText = itemView.findViewById(R.id.memoryText);
             titleText = itemView.findViewById(R.id.titleText);
             dateText = itemView.findViewById(R.id.dateText);
             iconView = itemView.findViewById(R.id.iconView);
             relativeLayout = itemView.findViewById(R.id.relativeLayout);
-            this.onNoteListener = onNoteListener;
-
             itemView.setOnClickListener(this);
 
         }
 
+        void bind(MemoryItems items){
+            memoryText.setText(items.getContent());
+            titleText.setText(items.getTitle());
+            dateText.setText(items.getDate());
+            iconView.setImageResource(items.getIcon());
+            currentItem = items;
+        }
+
+
+
         @Override
         public void onClick(View v) {
-            onNoteListener.onNoteClick(getAdapterPosition());
+            Intent intent = new Intent(this.context,AddMemory.class);
+            intent.putExtra("title",currentItem.getTitle());
+            intent.putExtra("memory",currentItem.getContent());
+            intent.putExtra("id",currentItem.getId());
+            intent.putExtra("date",currentItem.getDate());
+            this.context.startActivity(intent);
         }
     }
 
