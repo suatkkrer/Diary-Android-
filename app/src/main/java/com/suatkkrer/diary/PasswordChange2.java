@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,63 +14,23 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.hanks.passcodeview.PasscodeView;
+public class PasswordChange2 extends AppCompatActivity {
 
-public class PasswordActivity extends AppCompatActivity {
-
-    PasscodeView passcodeView;
-    String passwordConfirm;
     EditText e1,e2,e3,e4;
-    String passLast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password);
+        setContentView(R.layout.activity_password_change2);
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        e1 = findViewById(R.id.edit_1);
-        e2 = findViewById(R.id.edit_2);
-        e3 = findViewById(R.id.edit_3);
-        e4 = findViewById(R.id.edit_4);
-
-
-
-        boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                .getBoolean("isFirstRun", true);
-
-        if (isFirstRun) {
-            //show start activity
-            startActivity(new Intent(PasswordActivity.this, PasswordNewFirst.class));
-            Toast.makeText(PasswordActivity.this, "First Run", Toast.LENGTH_LONG)
-                    .show();
-        }
-
-        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                .putBoolean("isFirstRun", false).apply();
-
-
-        try {
-            SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Password",MODE_PRIVATE,null);
-
-            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS password(pass VARCHAR)");
-
-
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM password",null);
-
-            int passIx = cursor.getColumnIndex("pass");
-
-            while (cursor.moveToNext()){
-                passwordConfirm = cursor.getString(passIx);
-            }
-            cursor.close();
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
+        e1 = findViewById(R.id.etcc_1);
+        e2 = findViewById(R.id.etcc_2);
+        e3 = findViewById(R.id.etcc_3);
+        e4 = findViewById(R.id.etcc_4);
 
 
         e1.addTextChangedListener(new TextWatcher() {
@@ -152,9 +111,7 @@ public class PasswordActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
     private void closeKeyboard(){
         View view = this.getCurrentFocus();
         if (view != null){
@@ -163,20 +120,32 @@ public class PasswordActivity extends AppCompatActivity {
         }
     }
 
-    public void getPassword(View view) {
-        String pass1 = String.valueOf(e1.getText());
-        String pass2 = String.valueOf(e2.getText());
-        String pass3 = String.valueOf(e3.getText());
-        String pass4 = String.valueOf(e4.getText());
-        passLast = pass1 + "" + pass2 + "" + pass3 + "" + pass4;
-        
-        
-        if (passLast.equals(passwordConfirm)){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            
+    public void changePassword2(View view) {
+
+        if (e1.getText().length() != 0 && e2.getText().length() != 0 && e3.getText().length() != 0  && e4.getText().length() != 0){
+
+            try {
+                SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Password",MODE_PRIVATE,null);
+
+                sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS password(pass VARCHAR)");
+
+                String pass1 = String.valueOf(e1.getText());
+                String pass2 = String.valueOf(e2.getText());
+                String pass3 = String.valueOf(e3.getText());
+                String pass4 = String.valueOf(e4.getText());
+                String passLast = pass1 + "" + pass2 + "" + pass3 + "" + pass4;
+
+                sqLiteDatabase.execSQL("UPDATE password SET pass = '" + passLast + "'");
+
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Toast.makeText(this, "Şifreniz Başarıyla Değişti...", Toast.LENGTH_LONG).show();
+                startActivity(intent);
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         } else {
-            Toast.makeText(this, "Şifreniz yanlış lütfen tekrar deneyin...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Lütfen Şifreyi Doğru Oluşturun", Toast.LENGTH_SHORT).show();
         }
 
     }

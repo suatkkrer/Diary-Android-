@@ -62,7 +62,7 @@ public class fragment_settings extends Fragment {
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),PasswordNewFirst.class);
+                Intent intent = new Intent(getContext(),PasswordChange.class);
                 startActivity(intent);
             }
         });

@@ -15,42 +15,24 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.hanks.passcodeview.PasscodeView;
+public class PasswordChange extends AppCompatActivity {
 
-public class PasswordActivity extends AppCompatActivity {
-
-    PasscodeView passcodeView;
-    String passwordConfirm;
     EditText e1,e2,e3,e4;
+    String passwordConfirm;
     String passLast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password);
+        setContentView(R.layout.activity_password_change);
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        e1 = findViewById(R.id.edit_1);
-        e2 = findViewById(R.id.edit_2);
-        e3 = findViewById(R.id.edit_3);
-        e4 = findViewById(R.id.edit_4);
-
-
-
-        boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                .getBoolean("isFirstRun", true);
-
-        if (isFirstRun) {
-            //show start activity
-            startActivity(new Intent(PasswordActivity.this, PasswordNewFirst.class));
-            Toast.makeText(PasswordActivity.this, "First Run", Toast.LENGTH_LONG)
-                    .show();
-        }
-
-        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                .putBoolean("isFirstRun", false).apply();
+        e1 = findViewById(R.id.etc_1);
+        e2 = findViewById(R.id.etc_2);
+        e3 = findViewById(R.id.etc_3);
+        e4 = findViewById(R.id.etc_4);
 
 
         try {
@@ -71,8 +53,6 @@ public class PasswordActivity extends AppCompatActivity {
         } catch (Exception e){
             e.printStackTrace();
         }
-
-
 
         e1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -152,7 +132,6 @@ public class PasswordActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void closeKeyboard(){
@@ -163,21 +142,23 @@ public class PasswordActivity extends AppCompatActivity {
         }
     }
 
-    public void getPassword(View view) {
+    public void changePassword(View view) {
+
         String pass1 = String.valueOf(e1.getText());
         String pass2 = String.valueOf(e2.getText());
         String pass3 = String.valueOf(e3.getText());
         String pass4 = String.valueOf(e4.getText());
         passLast = pass1 + "" + pass2 + "" + pass3 + "" + pass4;
-        
-        
+
+
         if (passLast.equals(passwordConfirm)){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(),PasswordChange2.class);
             startActivity(intent);
-            
+
         } else {
             Toast.makeText(this, "Şifreniz yanlış lütfen tekrar deneyin...", Toast.LENGTH_SHORT).show();
         }
 
     }
+
 }
