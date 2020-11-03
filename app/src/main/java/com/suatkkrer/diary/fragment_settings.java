@@ -29,7 +29,7 @@ public class fragment_settings extends Fragment {
     View v;
     Context thisContext;
     SaveData saveData;
-    LinearLayout deleteLayout,changePassword,rate;
+    LinearLayout deleteLayout,changePassword,rate,privacy;
 
 
     @Nullable
@@ -61,11 +61,20 @@ public class fragment_settings extends Fragment {
         deleteLayout = v.findViewById(R.id.deleteAllItems);
         changePassword = v.findViewById(R.id.changePassword);
         rate = v.findViewById(R.id.rate);
+        privacy = v.findViewById(R.id.privacyPolicy);
 
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),PasswordChange.class);
+                startActivity(intent);
+            }
+        });
+
+        privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),Privacy.class);
                 startActivity(intent);
             }
         });
