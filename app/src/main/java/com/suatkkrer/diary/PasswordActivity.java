@@ -45,8 +45,6 @@ public class PasswordActivity extends AppCompatActivity {
         if (isFirstRun) {
             //show start activity
             startActivity(new Intent(PasswordActivity.this, PasswordNewFirst.class));
-            Toast.makeText(PasswordActivity.this, "First Run", Toast.LENGTH_LONG)
-                    .show();
         }
 
         getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
