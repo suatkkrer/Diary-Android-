@@ -106,11 +106,14 @@
                 android:background="@drawable/radius">
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:onClick="calendar"
-                    android:src="@drawable/calender"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:onClick="Cancel"
+                    android:src="@drawable/cancel"
                     />
+
 
                 <View
                     android:layout_width="3dp"
@@ -118,11 +121,14 @@
                     android:background="?attr/background_Color" />
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:onClick="Cancel"
-                    android:src="@drawable/cancel"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:onClick="Delete"
+                    android:src="@drawable/delete"
                     />
+
 
                 <View
                     android:layout_width="3dp"
@@ -130,11 +136,15 @@
                     android:background="?background_Color" />
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:onClick="Delete"
-                    android:src="@drawable/del"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="4dp"
+                    android:onClick="calendar"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/calendar"
                     />
+
+
 
                 <View
                     android:layout_width="3dp"
@@ -142,8 +152,11 @@
                     android:background="?attr/background_Color" />
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="4dp"
+
+                    android:layout_marginEnd="4dp"
                     android:onClick="saveButton"
                     android:src="@drawable/save"
                     />
