@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     Button btn_time, btn_date, btn_done;
     ImageView btn_record;
     SaveData saveData;
+    TextView datePick,timePick,dateHolder,timeHolder;
     EditText editext_message;
     String timeTonotify;
 
@@ -53,6 +55,10 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         btn_time = findViewById(R.id.btn_time);
         btn_date = findViewById(R.id.btn_date);
         btn_done = findViewById(R.id.btn_done);
+        datePick = findViewById(R.id.datePick);
+        timePick = findViewById(R.id.timePick);
+        dateHolder = findViewById(R.id.dateHolder);
+        timeHolder = findViewById(R.id.timeHolder);
         btn_time.setOnClickListener(this);
         btn_date.setOnClickListener(this);
         btn_done.setOnClickListener(this);
@@ -72,11 +78,11 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
     private void submit() {
 
-            if (btn_time.getText().toString().equals("Select Time") || btn_date.getText().toString().equals("Select date")) {
+            if (timePick.getText().toString().equals("Time: ") || datePick.getText().toString().equals("Date: ")) {
                 Toast.makeText(this, "Please select date and time", Toast.LENGTH_SHORT).show();
             } else {
-                String date = (btn_date.getText().toString().trim());
-                String time = (btn_time.getText().toString().trim());
+                String date = (dateHolder.getText().toString().trim());
+                String time = (timeHolder.getText().toString().trim());
                 setAlarm(date, time);
             }
     }
@@ -89,7 +95,8 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 timeTonotify = i + ":" + i1;
-                btn_time.setText(FormatTime(i, i1));
+                timePick.setText("Time: " + FormatTime(i, i1));
+                timeHolder.setText(FormatTime(i, i1));
             }
         }, hour, minute, false);
         timePickerDialog.show();
@@ -104,7 +111,8 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                btn_date.setText(day + "-" + (month + 1) + "-" + year);
+                datePick.setText("Date: " + day + "-" + (month + 1) + "-" + year);
+                dateHolder.setText(day + "-" + (month + 1) + "-" + year);
             }
         }, year, month, day);
         datePickerDialog.show();
@@ -164,6 +172,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         try {
             Date date1 = formatter.parse(dateandtime);
             am.set(AlarmManager.RTC_WAKEUP, date1.getTime(), pendingIntent);
+            Toast.makeText(this, "Hatırlatıcı Başarıyla Ayarlandı.", Toast.LENGTH_SHORT).show();
 
         } catch (ParseException e) {
             e.printStackTrace();

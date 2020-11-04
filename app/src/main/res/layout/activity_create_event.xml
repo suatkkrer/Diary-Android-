@@ -7,21 +7,60 @@
     android:orientation="vertical"
     tools:context=".CreateEvent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/timeHolder"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/dateHolder"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePick"
+        android:textSize="30sp"
+        android:text="Date: "
+        android:layout_marginTop="150dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:fontFamily="@font/aclonica"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="50dp"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time: "
+        android:layout_marginTop="30dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:id="@+id/timePick"
+        android:textSize="30sp"
+        android:fontFamily="@font/aclonica"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="50dp"/>
+
+
     <Button
         android:layout_width="match_parent"
-        android:background="@drawable/radius3"
         android:layout_height="wrap_content"
         android:id="@+id/btn_time"
         android:text="Select Time"
+        android:backgroundTint="?colorEx"
         android:textAllCaps="false"
         android:textColor="?background_Color"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="70dp"
         android:layout_marginHorizontal="25dp" />
     <Button
         android:layout_width="match_parent"
         android:text="Select date"
+        android:backgroundTint="?colorEx"
         android:textAllCaps="false"
-        android:background="@drawable/radius3"
         android:textColor="?background_Color"
         android:layout_height="wrap_content"
         android:id="@+id/btn_date"
@@ -33,7 +72,7 @@
     android:layout_marginTop="30dp"
     android:id="@+id/btn_done"
     android:textColor="?background_Color"
-    android:text="Done"
-    android:background="@color/colorPrimary"
+    android:text="Hatırlatıcı Kur"
+    android:backgroundTint="@android:color/holo_red_dark"
     android:layout_height="wrap_content"/>
 </LinearLayout>
