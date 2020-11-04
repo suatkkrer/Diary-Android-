@@ -41,7 +41,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Şifre Değiştir"
+                        android:text="@string/ifre_de_i_tir"
                         android:textColor="?attr/Text_Color"
                         android:textSize="16sp" />
 
@@ -79,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Karanlık Mod"
+                        android:text="@string/karanl_k_mod"
                         android:textColor="?attr/Text_Color"
                         android:textSize="16sp" />
 
@@ -200,7 +200,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hatırlatıcı"
+                        android:text="@string/hat_rlat_c"
                         android:textColor="?attr/Text_Color"
                         android:textSize="16sp" />
 
@@ -268,7 +268,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Programdaki Bütün Verileri Sil"
+                        android:text="@string/programdaki_b_t_n_verileri_sil"
                         android:textColor="?attr/Text_Color"
                         android:textSize="16sp" />
 
@@ -306,7 +306,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gizlilik Politikası"
+                        android:text="@string/gizlilik_politikas"
                         android:textColor="?attr/Text_Color"
                         android:textSize="16sp" />
 
@@ -346,8 +346,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Uygulamaya Puan Ver"
-
+                        android:text="@string/uygulamaya_puan_ver"
                         android:textColor="?attr/Text_Color"
                         android:textSize="16sp" />
 

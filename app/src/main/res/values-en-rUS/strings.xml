@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Diary</string>
+    <string name="ana_sayfa">Main Page</string>
+    <string name="arama">Search</string>
+    <string name="ayarlar">Settings</string>
+    <string name="mainPage">Main Page</string>
+    <string name="g_nl_k">Diary</string>
+    <string name="selectDate">Please Select Date and Time</string>
+    <string name="reminder">Reminder has been set successfully</string>
+    <string name="areYouSure">Are you sure?</string>
+    <string name="AllDatas">Are you sure all your data will be deleted?</string>
+    <string name="yes">Yes</string>
+    <string name="dataDeleted">Your data has been successfully deleted.</string>
+    <string name="no">No</string>
+    <string name="cancelled">Deletion has been canceled.</string>
+    <string name="wrongPassword">Your password is incorrect, please try again ...</string>
+    <string name="changedPassword">Your Password Has Been Changed Successfully ...</string>
+    <string name="pleaseEnterTrue">Please Set Password Correctly</string>
+    <string name="passCreated">Your Password Created Successfully</string>
+    <string name="createPass">Please Generate Password</string>
+    <string name="title">Title...</string>
+    <string name="startWriting">Start Writing ...</string>
+    <string name="Time">Select Time</string>
+    <string name="date">Select Date</string>
+    <string name="setReminder">Set Reminder</string>
+    <string name="l_tfen_ifrenizi_giriniz">Please enter your password</string>
+    <string name="devam_et">Continue</string>
+    <string name="l_tfen_eski_ifrenizi_girin">Please Enter Old Password</string>
+    <string name="l_tfen_yeni_ifrenizi_girin">Please Enter Your New Password</string>
+    <string name="l_tfen_ifrenizi_olu_turun">Please Create Your Password</string>
+    <string name="ifre_de_i_tir">Change Password</string>
+    <string name="karanl_k_mod">Dark Mode</string>
+    <string name="hat_rlat_c">Reminder</string>
+    <string name="programdaki_b_t_n_verileri_sil">Delete All Data in the Program</string>
+    <string name="gizlilik_politikas">Privacy Policy</string>
+    <string name="uygulamaya_puan_ver">Rate the App</string>
+</resources>

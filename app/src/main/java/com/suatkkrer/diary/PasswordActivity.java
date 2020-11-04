@@ -174,7 +174,7 @@ public class PasswordActivity extends AppCompatActivity {
             startActivity(intent);
             
         } else {
-            Toast.makeText(this, "Şifreniz yanlış lütfen tekrar deneyin...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.wrongPassword), Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -108,9 +108,9 @@ public class fragment_settings extends Fragment {
             public void onClick(View v) {
 
                 AlertDialog.Builder aler = new AlertDialog.Builder(getContext());
-                aler.setTitle("Emin misiniz?");
-                aler.setMessage("Bütün verileriniz silinecek emin misiniz?");
-                aler.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                aler.setTitle(R.string.areYouSure);
+                aler.setMessage(R.string.AllDatas);
+                aler.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
@@ -120,7 +120,7 @@ public class fragment_settings extends Fragment {
 
 
                             sqLiteDatabase.execSQL("DELETE FROM memories");
-                            Toast.makeText(getActivity(), "Verileriniz başarıyla silindi.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.dataDeleted), Toast.LENGTH_SHORT).show();
                             restartApplication();
 
                         } catch (Exception e){
@@ -128,10 +128,10 @@ public class fragment_settings extends Fragment {
                         }
                     }
                 });
-                aler.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                aler.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "Silme işlemi iptal edildi.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getString(R.string.cancelled), Toast.LENGTH_SHORT).show();
                     }
                 });
                 aler.create().show();

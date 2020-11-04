@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_time"
-        android:text="Select Time"
+        android:text="@string/Time"
         android:backgroundTint="?colorEx"
         android:textAllCaps="false"
         android:textColor="?background_Color"
@@ -58,7 +58,7 @@
         android:layout_marginHorizontal="25dp" />
     <Button
         android:layout_width="match_parent"
-        android:text="Select date"
+        android:text="@string/date"
         android:backgroundTint="?colorEx"
         android:textAllCaps="false"
         android:textColor="?background_Color"
@@ -72,7 +72,7 @@
     android:layout_marginTop="30dp"
     android:id="@+id/btn_done"
     android:textColor="?background_Color"
-    android:text="Hatırlatıcı Kur"
+    android:text="@string/setReminder"
     android:backgroundTint="@android:color/holo_red_dark"
     android:layout_height="wrap_content"/>
 </LinearLayout>

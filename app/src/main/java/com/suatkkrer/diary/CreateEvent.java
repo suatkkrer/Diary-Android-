@@ -79,7 +79,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     private void submit() {
 
             if (timePick.getText().toString().equals("Time: ") || datePick.getText().toString().equals("Date: ")) {
-                Toast.makeText(this, "Please select date and time", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.selectDate), Toast.LENGTH_SHORT).show();
             } else {
                 String date = (dateHolder.getText().toString().trim());
                 String time = (timeHolder.getText().toString().trim());
@@ -172,7 +172,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         try {
             Date date1 = formatter.parse(dateandtime);
             am.set(AlarmManager.RTC_WAKEUP, date1.getTime(), pendingIntent);
-            Toast.makeText(this, "Hatırlatıcı Başarıyla Ayarlandı.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.reminder), Toast.LENGTH_SHORT).show();
 
         } catch (ParseException e) {
             e.printStackTrace();

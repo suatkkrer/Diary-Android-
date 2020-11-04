@@ -140,14 +140,15 @@ public class PasswordNewFirst extends AppCompatActivity {
                 sqLiteDatabase.execSQL("INSERT INTO password (pass) VALUES ('" + passLast + "')");
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                Toast.makeText(this, "Şifreniz Başarıyla Oluşturuldu", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.passCreated), Toast.LENGTH_LONG).show();
                 startActivity(intent);
 
             } catch (Exception e){
                 e.printStackTrace();
             }
         } else {
-            Toast.makeText(this, "Lütfen Şifre Oluşturun", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.createPass), Toast.LENGTH_SHORT).show();
+
         }
     }
 }

@@ -32,7 +32,7 @@ public class AlarmBrodcast extends BroadcastReceiver {
         contentView.setImageViewResource(R.id.image, R.mipmap.ic_launcher);
         PendingIntent pendingSwitchIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         contentView.setOnClickPendingIntent(R.id.flashButton, pendingSwitchIntent);
-        contentView.setTextViewText(R.id.message, "Günlük Yazma Vakti...");
+        contentView.setTextViewText(R.id.message, "Diary Time...");
         contentView.setTextViewText(R.id.date, date);
         mBuilder.setSmallIcon(R.drawable.ic_alarm_white_24dp);
         mBuilder.setAutoCancel(true);

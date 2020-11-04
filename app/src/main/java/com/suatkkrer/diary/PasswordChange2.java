@@ -138,14 +138,14 @@ public class PasswordChange2 extends AppCompatActivity {
                 sqLiteDatabase.execSQL("UPDATE password SET pass = '" + passLast + "'");
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                Toast.makeText(this, "Şifreniz Başarıyla Değişti...", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.changedPassword), Toast.LENGTH_LONG).show();
                 startActivity(intent);
 
             } catch (Exception e){
                 e.printStackTrace();
             }
         } else {
-            Toast.makeText(this, "Lütfen Şifreyi Doğru Oluşturun", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.pleaseEnterTrue), Toast.LENGTH_SHORT).show();
         }
 
     }
