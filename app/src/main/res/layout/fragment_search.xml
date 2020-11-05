@@ -10,7 +10,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ara"
+        android:hint="@string/ara"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:background="@drawable/search_icon"
