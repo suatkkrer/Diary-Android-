@@ -47,8 +47,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> imp
 
         holder.relativeLayout.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale));
 
-
-
         holder.memoryText.setText(mData.get(position).getContent());
         holder.titleText.setText(mData.get(position).getTitle());
         holder.dateText.setText(mData.get(position).getDate());
