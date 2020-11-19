@@ -43,6 +43,8 @@ public class fragment_home extends Fragment implements Adapter.OnNoteListener {
         recyclerView = v.findViewById(R.id.memoryRecycler);
         floatingActionButton = v.findViewById(R.id.fb_button);
 
+        
+
         if (mData.size() == 0) {
             try {
                 SQLiteDatabase sqLiteDatabase = thisContext.openOrCreateDatabase("Memories", MODE_PRIVATE, null);
