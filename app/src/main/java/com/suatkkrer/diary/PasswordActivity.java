@@ -45,7 +45,6 @@ public class PasswordActivity extends AppCompatActivity {
         if (isFirstRun) {
 
             //show start activity
-            //show start activity
             startActivity(new Intent(PasswordActivity.this, PasswordNewFirst.class));
         }
 
