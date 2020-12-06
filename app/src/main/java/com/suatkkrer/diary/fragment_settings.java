@@ -88,7 +88,6 @@ public class fragment_settings extends Fragment {
             }
         });
 
-        //getActivity().getPackageName()
 
         rate.setOnClickListener(new View.OnClickListener() {
             @Override
