@@ -50,10 +50,6 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
 
         holder.relativeLayout.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale));
 
-//        holder.memoryText.setText(mDataFiltered.get(position).getContent());
-//        holder.titleText.setText(mDataFiltered.get(position).getTitle());
-//        holder.dateText.setText(mDataFiltered.get(position).getDate());
-//        holder.iconView.setImageResource(mDataFiltered.get(position).getIcon());
 
         MemoryItems item = mDataFiltered.get(position);
         holder.bind(item);
