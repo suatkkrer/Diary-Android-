@@ -47,10 +47,7 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.AdapterVie
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
 
         holder.iconView.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition));
-
         holder.relativeLayout.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale));
-
-
         MemoryItems item = mDataFiltered.get(position);
         holder.bind(item);
 
