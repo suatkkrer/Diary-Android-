@@ -19,7 +19,6 @@ import com.hanks.passcodeview.PasscodeView;
 
 public class PasswordActivity extends AppCompatActivity {
 
-    PasscodeView passcodeView;
     String passwordConfirm;
     EditText e1,e2,e3,e4;
     String passLast;
